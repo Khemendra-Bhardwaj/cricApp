@@ -12,16 +12,21 @@ export default function Authentication() {
       try{
       const person =  await createUserWithEmailAndPassword(auth, user.Email, user.Password)
       console.log('user created Successfully ', person);
+      
+    //   render cricApp.js   
+
       }
-      catch(e){ console.log(e); }
+      catch(e){ console.log(e);   /* 404 or error page render */ }
     }
     
     const handleSignIn= async ()=>{
       try{
       const person =  await signInWithEmailAndPassword(auth, user.Email, user.Password)
       console.log('user signed in  Successfully ', person);
+      //   render cricApp.js   
+
       }
-      catch(e){ console.log(e); }
+      catch(e){ console.log(e);  /* 404 or error page render */ }
     }
   
 return (
