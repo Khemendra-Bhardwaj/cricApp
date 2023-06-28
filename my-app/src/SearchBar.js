@@ -3,30 +3,28 @@ import ReactEcharts from "echarts-for-react";
 
 
 export default function SearchBar() {
-  const [currData, setcurrData] = useState([0,0,0,0])
-
-  const  option = {
+  // const [currData, setcurrData] = useState([0,0,0,0])
+  // const [showFormats, setShowFormats] = useState(0)
+  const  optionV = {
     legend: {},
     tooltip: {},
     dataset: {
       dimensions: ['product', 'Test', 'Odi', 'T20','Ipl'],
       source: [
-        { product: 'Matcha Latte', 'Test': currData[0], 'Odi': currData[1], 'T20': currData[2] ,'Ipl':currData[3]},
+        { product: 'Matcha Latte', 'Test': 0, 'Odi': 0, 'T20': 0 ,'Ipl': 0 },
       ]
     },
     xAxis: { type: 'category' },
     yAxis: {},
     series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' },{ type: 'bar' }]
   };
-
-
     const [playerName, setPlayerName] = useState('Joe root');   //1413
     const [stats, setStats] = useState([[]] )
     const [mode, setMode] = useState('batting')
     const [find, setFind] = useState('Matches')
     
-    const [optionVal, setOptionVal] = useState(option)
-
+    const [optionVal, setOptionVal] = useState(optionV)
+   
 
     const [playerInfo, setPlayerInfo] = useState({
       id:8733,
@@ -49,7 +47,7 @@ export default function SearchBar() {
         // const result = await response.text();
         const result  = await response.json();
         console.log(result);
-        const getPlayer = await getThatPlayer(result); 
+        await getThatPlayer(result); 
 
       } catch (error) {
         console.error(error);
@@ -104,6 +102,7 @@ export default function SearchBar() {
     // }
 
   const getData = async()=>{
+    // setShowFormats(1); 
   const url = `https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/${playerInfo.id}/${mode}`;
   console.log(url);
 
@@ -133,35 +132,40 @@ export default function SearchBar() {
     }
 
   
-      
-    
-
-    const displayGraph= (e)=>{
-      
-      setFind(e.target.value)  //Runs  
-      alert('showing  ', e.target.value)
-      console.log('finding ', find);
+    const displayGraph=   async( )=>{
+      console.log('finding ' + find);
      
-      const x = []
-    
-        
-        for(let j=0;j<stats.length;j++){
-          if(stats[j][0] === find){
-              // setcurrData([stats[i][ j ])
-              for(let i=1;i<stats[j].length;i++){
-                x.push(stats[j][i]);
-              }
-              break; 
-          }
+      // const x = []
+      for (let j = 0; j < stats.length; j++) {
+
+        if (stats[j][0] === find) {
+          const newData = [...stats[j].slice(1)];
+          console.log('=> '+  find + '  ' + newData);
+          const  optionVv = {
+            legend: {},
+            tooltip: {},
+            dataset: {
+              dimensions: ['product', 'Test', 'Odi', 'T20','Ipl'],
+              source: [
+                { product: 'Format', 'Test': `${newData[0]}`, 'Odi': `${newData[1]}`, 'T20': `${newData[2]}` ,'Ipl': `${newData[3]}` },
+              ]
+            },
+            xAxis: { type: 'category' },
+            yAxis: {},
+            series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' },{ type: 'bar' }]
+          };
+  
+  
+          setOptionVal(optionVv)
+
+          break;
         }
-        console.log(x);
-        setcurrData(x) 
-        setOptionVal(optionVal)
-       return  <ReactEcharts  option={optionVal} />
+      }
+      
+     
+        
+       
     }
-
-
-
 
 
   return (
@@ -174,25 +178,27 @@ export default function SearchBar() {
         <h1>  {playerInfo.Name} </h1> 
         <h1>  {playerInfo.id} </h1>
         <h1>  {playerInfo.teamName} </h1> 
-      {/* <h1>  Matches : Test  { } </h1>*/}
-        
+    
 
-        <button onClick={getData} >  Batting  </button>
+        <button onClick={getData}  >  Batting  </button>
         <button onClick={getBowlingData} > Bowling </button>
         
+       
+      <select name="field" value={find} onChange={e=> setFind(e.target.value)  }  >
+      <option value="Matches"  >Matches</option>
+      <option value="Innings"  >Innings</option>
+      <option value="Runs"  >Runs</option>
+      <option value="Highest"  >Highest</option>
+      <option value="Average"  >Average</option>
+      <option value="SR"  >SR</option>
+      <option value="Fours"  >Fours</option>
+      <option value="Sixes"  >Sixes</option>
+    </select>
+   
+      {/* {displayGraph} */}
+      <button onClick={displayGraph}> Show Graph  </button>
+      <ReactEcharts  option={optionVal}  style={ {width:'400px', 'height':'400px'} } />  
 
-        <select name="field" onChange={displayGraph}  >
-        <option value="Matches"  >Matches</option>
-        <option value="Innings"  >Innings</option>
-        <option value="Runs"  >Runs</option>
-        <option value="Highest"  >Highest</option>
-        <option value="Average"  >Average</option>
-        <option value="SR"  >SR</option>
-        <option value="Fours"  >Fours</option>
-        <option value="Sixes"  >Sixes</option>
-       </select>
-    
-      
 
     </>
   )
