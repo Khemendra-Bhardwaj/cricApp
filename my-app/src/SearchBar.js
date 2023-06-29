@@ -1,39 +1,24 @@
 import React, { useState } from 'react';
+// import ReactEcharts from 'echarts-for-react';
+import DisplayGraph  from './DisplayGraph';
 import ReactEcharts from 'echarts-for-react';
 
 export default function SearchBar() {
-  const optionV = {
-    legend: {},
-    tooltip: {},
-    dataset: {
-      dimensions: ['product', 'Test', 'Odi', 'T20', 'Ipl'],
-      source: [
-        { product: 'Format', 'Test': 0, 'Odi': 0, 'T20': 0, 'Ipl': 0 },
-      ],
-    },
-    xAxis: { type: 'category' },
-    yAxis: {},
-    series: [
-      { type: 'bar' },
-      { type: 'bar' },
-      { type: 'bar' },
-      { type: 'bar' },
-    ],
-  };
+
+
 
   const [playerName, setPlayerName] = useState('Joe root');
   const [stats, setStats] = useState([[]]);
   const [mode, setMode] = useState('batting');
   const [find, setFind] = useState('Matches');
-  // const [findBowl, setFindBowl] = useState('Matches')
-  const [optionVal, setOptionVal] = useState(optionV);
+  // const [showGraph, setShowGraph] = useState(0)
   const [playerInfo, setPlayerInfo] = useState({
     id: 8733,
     Name: '',
     Faceid: '',
     Country: '',
   });
-
+ // SEARCH API 1 For PLAYER NAME 
   const handleSearch = async () => {
     const url = `https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/search?plrN=${playerName}`;
     const options = {
@@ -113,43 +98,6 @@ export default function SearchBar() {
     getData();
   };
 
-  const displayGraph = () => {
-    console.log('finding ' +  find  );
-
-    for (let j = 0; j < stats.length; j++) {
-      if (stats[j][0] === find) {
-        const newData = stats[j].slice(1);
-        console.log('=> ' + find + '  ' + newData);
-        const optionVv = {
-          legend: {},
-          tooltip: {},
-          dataset: {
-            dimensions: ['product', 'Test', 'Odi', 'T20', 'Ipl'],
-            source: [
-              {
-                product: 'Format',
-                'Test': `${newData[0]}`,
-                'Odi': `${newData[1]}`,
-                'T20': `${newData[2]}`,
-                'Ipl': `${newData[3]}`,
-              },
-            ],
-          },
-          xAxis: { type: 'category' },
-          yAxis: {},
-          series: [
-            { type: 'bar' },
-            { type: 'bar' },
-            { type: 'bar' },
-            { type: 'bar' },
-          ],
-        };
-
-        setOptionVal(optionVv);
-        break;
-      }
-    }
-  };
 
   // const displayGraphBowl = () => {
   //   console.log('finding '  + findBowl );
@@ -188,7 +136,12 @@ export default function SearchBar() {
   //     }
   //   }
   // };
-
+  const displayGraph = ()=>{
+    // setShowGraph(1);
+    console.log('displaying ....');
+  //  return ( <> <DisplayGraph find={find} stats={stats} x={ReactEcharts} /> 
+   {/* </> ) */}
+  }
 
   return (
     <>
@@ -243,10 +196,11 @@ export default function SearchBar() {
 
 
 
-      <button onClick={displayGraph}>Show Graph </button>
+      {/* <button onClick={displayGraph}>Show Graph </button> */}
+      {/* {displayGraph()} */}
       {/* <button onClick={displayGraphBowl }>Show Graph bowling </button> */}
-
-      <ReactEcharts option={optionVal} style={{ width: '400px', height: '400px' }} />
+        {/* {displayGraph} */}
+      {/* <DisplayGraph find={find} stats={stats} x={ReactEcharts} />  */}
     </>
   );
 }
