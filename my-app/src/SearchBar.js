@@ -25,7 +25,7 @@ export default function SearchBar() {
   const [stats, setStats] = useState([[]]);
   const [mode, setMode] = useState('batting');
   const [find, setFind] = useState('Matches');
-  const [findBowl, setFindBowl] = useState('Matches')
+  // const [findBowl, setFindBowl] = useState('Matches')
   const [optionVal, setOptionVal] = useState(optionV);
   const [playerInfo, setPlayerInfo] = useState({
     id: 8733,
@@ -103,6 +103,11 @@ export default function SearchBar() {
     }
   };
 
+  const getBattingData = ()=>{
+    setMode('batting')
+    getData() 
+  }
+
   const getBowlingData = () => {
     setMode('bowling');
     getData();
@@ -146,43 +151,43 @@ export default function SearchBar() {
     }
   };
 
-  const displayGraphBowl = () => {
-    console.log('finding '  + findBowl );
+  // const displayGraphBowl = () => {
+  //   console.log('finding '  + findBowl );
 
-    for (let j = 0; j < stats.length; j++) {
-      if (stats[j][0] === findBowl) {
-        const newData = stats[j].slice(1);
-        console.log('=> ' + findBowl + '  ' + newData);
-        const optionVv = {
-          legend: {},
-          tooltip: {},
-          dataset: {
-            dimensions: ['product', 'Test', 'Odi', 'T20', 'Ipl'],
-            source: [
-              {
-                product: 'Format',
-                'Test': `${newData[0]}`,
-                'Odi': `${newData[1]}`,
-                'T20': `${newData[2]}`,
-                'Ipl': `${newData[3]}`,
-              },
-            ],
-          },
-          xAxis: { type: 'category' },
-          yAxis: {},
-          series: [
-            { type: 'bar' },
-            { type: 'bar' },
-            { type: 'bar' },
-            { type: 'bar' },
-          ],
-        };
+  //   for (let j = 0; j < stats.length; j++) {
+  //     if (stats[j][0] === findBowl) {
+  //       const newData = stats[j].slice(1);
+  //       console.log('=> ' + findBowl + '  ' + newData);
+  //       const optionVv = {
+  //         legend: {},
+  //         tooltip: {},
+  //         dataset: {
+  //           dimensions: ['product', 'Test', 'Odi', 'T20', 'Ipl'],
+  //           source: [
+  //             {
+  //               product: 'Format',
+  //               'Test': `${newData[0]}`,
+  //               'Odi': `${newData[1]}`,
+  //               'T20': `${newData[2]}`,
+  //               'Ipl': `${newData[3]}`,
+  //             },
+  //           ],
+  //         },
+  //         xAxis: { type: 'category' },
+  //         yAxis: {},
+  //         series: [
+  //           { type: 'bar' },
+  //           { type: 'bar' },
+  //           { type: 'bar' },
+  //           { type: 'bar' },
+  //         ],
+  //       };
 
-        setOptionVal(optionVv);
-        break;
-      }
-    }
-  };
+  //       setOptionVal(optionVv);
+  //       break;
+  //     }
+  //   }
+  // };
 
 
   return (
@@ -201,7 +206,7 @@ export default function SearchBar() {
       <h1>{playerInfo.id}</h1>
       <h1>{playerInfo.teamName}</h1>
 
-      <button onClick={getData}>Batting</button>
+      <button onClick={getBattingData}>Batting</button>
       <button onClick={getBowlingData}>Bowling</button>
 
       <select
@@ -221,8 +226,8 @@ export default function SearchBar() {
 
       <select
         name="field"
-        value={findBowl}
-        onChange={(e) => setFindBowl(e.target.value)}
+        value={find}
+        onChange={(e) => setFind(e.target.value)}
       >
         <option value="Matches">Matches</option>
         <option value="Innings">Innings</option>
@@ -238,8 +243,8 @@ export default function SearchBar() {
 
 
 
-      <button onClick={displayGraph}>Show Graph batting</button>
-      <button onClick={displayGraphBowl }>Show Graph bowling </button>
+      <button onClick={displayGraph}>Show Graph </button>
+      {/* <button onClick={displayGraphBowl }>Show Graph bowling </button> */}
 
       <ReactEcharts option={optionVal} style={{ width: '400px', height: '400px' }} />
     </>
