@@ -1,6 +1,6 @@
 import React from 'react'
-// import ReactEcharts from 'echarts-for-react';
-export default function Graph({find,stats,setStats,optionVal,setOptionVal, ReactEcharts}) {
+import ReactEcharts from 'echarts-for-react';
+export default function Graph({find,stats,setStats,optionVal,setOptionVal }) {
     
     const displayGraph = () => {
         console.log('finding ' +  find  );
@@ -47,7 +47,7 @@ export default function Graph({find,stats,setStats,optionVal,setOptionVal, React
     <button onClick={displayGraph}>Show Graph </button>
      <ReactEcharts option={optionVal} style={{ width: '400px', height: '400px' }} />
  
-
+    {/* <p> hehe  </p> */}
     </>
   )
 }
