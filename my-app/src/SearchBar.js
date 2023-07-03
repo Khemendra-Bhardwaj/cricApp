@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import ReactEcharts from 'echarts-for-react';
+import Selectbar from './Select';
+import Graph from './Graph';
+// import find from './Select'
 
 export default function SearchBar() {
   const optionV = {
@@ -103,91 +106,11 @@ export default function SearchBar() {
     }
   };
 
-  const getBattingData = ()=>{
-    setMode('batting')
-    getData() 
-  }
+  const getBattingData = ()=>{ setMode('batting');   getData()  }
 
-  const getBowlingData = () => {
-    setMode('bowling');
-    getData();
-  };
+  const getBowlingData = () => { setMode('bowling');  getData(); };
 
-  const displayGraph = () => {
-    console.log('finding ' +  find  );
-
-    for (let j = 0; j < stats.length; j++) {
-      if (stats[j][0] === find) {
-        const newData = stats[j].slice(1);
-        console.log('=> ' + find + '  ' + newData);
-        const optionVv = {
-          legend: {},
-          tooltip: {},
-          dataset: {
-            dimensions: ['product', 'Test', 'Odi', 'T20', 'Ipl'],
-            source: [
-              {
-                product: 'Format',
-                'Test': `${newData[0]}`,
-                'Odi': `${newData[1]}`,
-                'T20': `${newData[2]}`,
-                'Ipl': `${newData[3]}`,
-              },
-            ],
-          },
-          xAxis: { type: 'category' },
-          yAxis: {},
-          series: [
-            { type: 'bar' },
-            { type: 'bar' },
-            { type: 'bar' },
-            { type: 'bar' },
-          ],
-        };
-
-        setOptionVal(optionVv);
-        break;
-      }
-    }
-  };
-
-  // const displayGraphBowl = () => {
-  //   console.log('finding '  + findBowl );
-
-  //   for (let j = 0; j < stats.length; j++) {
-  //     if (stats[j][0] === findBowl) {
-  //       const newData = stats[j].slice(1);
-  //       console.log('=> ' + findBowl + '  ' + newData);
-  //       const optionVv = {
-  //         legend: {},
-  //         tooltip: {},
-  //         dataset: {
-  //           dimensions: ['product', 'Test', 'Odi', 'T20', 'Ipl'],
-  //           source: [
-  //             {
-  //               product: 'Format',
-  //               'Test': `${newData[0]}`,
-  //               'Odi': `${newData[1]}`,
-  //               'T20': `${newData[2]}`,
-  //               'Ipl': `${newData[3]}`,
-  //             },
-  //           ],
-  //         },
-  //         xAxis: { type: 'category' },
-  //         yAxis: {},
-  //         series: [
-  //           { type: 'bar' },
-  //           { type: 'bar' },
-  //           { type: 'bar' },
-  //           { type: 'bar' },
-  //         ],
-  //       };
-
-  //       setOptionVal(optionVv);
-  //       break;
-  //     }
-  //   }
-  // };
+  
 
 
   return (
@@ -203,50 +126,16 @@ export default function SearchBar() {
       </button>
 
       <h1>{playerInfo.Name}</h1>
-      <h1>{playerInfo.id}</h1>
-      <h1>{playerInfo.teamName}</h1>
+      {/* <h1>{playerInfo.id}</h1> */}
+      {/* <h1>{playerInfo.teamName}</h1> */}
 
       <button onClick={getBattingData}>Batting</button>
       <button onClick={getBowlingData}>Bowling</button>
 
-      <select
-        name="field"
-        value={find}
-        onChange={(e) => setFind(e.target.value)}
-      >
-        <option value="Matches">Matches</option>
-        <option value="Innings">Innings</option>
-        <option value="Runs">Runs</option>
-        <option value="Highest">Highest</option>
-        <option value="Average">Average</option>
-        <option value="SR">SR</option>
-        <option value="Fours">Fours</option>
-        <option value="Sixes">Sixes</option>
-      </select>
+      <Selectbar  find = {find} setFind={setFind}  />
 
-      <select
-        name="field"
-        value={find}
-        onChange={(e) => setFind(e.target.value)}
-      >
-        <option value="Matches">Matches</option>
-        <option value="Innings">Innings</option>
-        <option value="Runs">Runs</option>
-        <option value="Balls">Balls</option>
-        <option value="Maidens">Maidens</option>
-        <option value="Avg">Avg</option>
-        <option value="5w">5w</option>
-        <option value="SR">SR</option>
-        <option value="10w"> 10w </option>
-      </select>
+      <Graph  stats={stats} setStats={setStats} optionVal={optionVal} setOptionVal={setOptionVal} find = {find} ReactEcharts={ReactEcharts} />
 
-
-
-
-      <button onClick={displayGraph}>Show Graph </button>
-      {/* <button onClick={displayGraphBowl }>Show Graph bowling </button> */}
-
-      <ReactEcharts option={optionVal} style={{ width: '400px', height: '400px' }} />
     </>
   );
 }
