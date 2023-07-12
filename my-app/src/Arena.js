@@ -5,6 +5,8 @@ import Graph from './Graph';
 import SearchBox from './Search';
 // import GetBatBowlData from './fieldData'
 // import find from './Select'
+import Playerprofile  from './Playerprofile'; 
+
 
 export default function SearchBar() {
 
@@ -90,7 +92,7 @@ export default function SearchBar() {
     <>
     
       <SearchBox playerName={playerName} setPlayerInfo={setPlayerInfo} setPlayerName={setPlayerName} />
-
+      <Playerprofile  playerId = {playerInfo.id} /> 
       <h1>{playerInfo.Name}</h1>
       {/* <h1>{playerInfo.id}</h1> */}
       {/* <h1>{playerInfo.teamName}</h1> */}
