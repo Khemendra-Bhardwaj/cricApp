@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Get_Bat_Bowl_Data({stats,setStats,playerInfo,mode,setMode}) {
+export default function GetBatBowlData({stats,setStats,playerInfo,mode,setMode}) {
 
     const carrerStats = async (result) => {  //populating stats 2d array Dont make 2
         const stat = [[]];
@@ -32,9 +32,9 @@ export default function Get_Bat_Bowl_Data({stats,setStats,playerInfo,mode,setMod
         };
         try {
           const response = await fetch(url, options);
-          const battingResult = await response.json();
-          console.log(battingResult);
-          carrerStats(battingResult);
+          const Result = await response.json();
+          console.log(Result);
+          carrerStats(Result);
         } catch (error) {
           console.error(error);
         }
@@ -54,3 +54,8 @@ export default function Get_Bat_Bowl_Data({stats,setStats,playerInfo,mode,setMod
    </>
   )
 }
+
+
+// i guess after manuipulating stats here it is unable to show outside 
+// may  be  a copy is created here 
+// can try & check  with local eg or gpt 

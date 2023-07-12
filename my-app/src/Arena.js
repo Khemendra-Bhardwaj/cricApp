@@ -1,38 +1,38 @@
 import React, { useState } from 'react';
-import ReactEcharts from 'echarts-for-react';
+// import ReactEcharts from 'echarts-for-react';
 import Selectbar from './Select';
 import Graph from './Graph';
 import SearchBox from './Search';
-import Get_Bat_Bowl_Data from './fieldData'
+// import GetBatBowlData from './fieldData'
 // import find from './Select'
 
 export default function SearchBar() {
 
-  const optionV = {
-    legend: {},
-    tooltip: {},
-    dataset: {
-      dimensions: ['product', 'Test', 'Odi', 'T20', 'Ipl'],
-      source: [
-        { product: 'Format', 'Test': 0, 'Odi': 0, 'T20': 0, 'Ipl': 0 },
-      ],
-    },
-    xAxis: { type: 'category' },
-    yAxis: {},
-    series: [
-      { type: 'bar' },
-      { type: 'bar' },
-      { type: 'bar' },
-      { type: 'bar' },
-    ],
-  };
+  // const optionV = {
+  //   legend: {},
+  //   tooltip: {},
+  //   dataset: {
+  //     dimensions: ['product', 'Test', 'Odi', 'T20', 'Ipl'],
+  //     source: [
+  //       { product: 'Format', 'Test': 0, 'Odi': 0, 'T20': 0, 'Ipl': 0 },
+  //     ],
+  //   },
+  //   xAxis: { type: 'category' },
+  //   yAxis: {},
+  //   series: [
+  //     { type: 'bar' },
+  //     { type: 'bar' },
+  //     { type: 'bar' },
+  //     { type: 'bar' },
+  //   ],
+  // };
 
   const [playerName, setPlayerName] = useState('Joe root');
   const [stats, setStats] = useState([[]]);
   const [mode, setMode] = useState('batting');
   const [find, setFind] = useState('Matches');
   // const [findBowl, setFindBowl] = useState('Matches')
-  const [optionVal, setOptionVal] = useState(optionV);
+  // const [optionVal, setOptionVal] = useState(optionV);
   const [playerInfo, setPlayerInfo] = useState({
     id: 8733,
     Name: '',
@@ -86,8 +86,6 @@ export default function SearchBar() {
 
   
 
-
-
   return (
     <>
     
@@ -97,13 +95,13 @@ export default function SearchBar() {
       {/* <h1>{playerInfo.id}</h1> */}
       {/* <h1>{playerInfo.teamName}</h1> */}
 
-      <button onClick={getBattingData}>Batting</button>
-       <button onClick={getBowlingData}>Bowling</button> 
-    {/* <Get_Bat_Bowl_Data  stats={stats} setStats={setMode} playerInfo={playerInfo} mode={mode}  setMode={setMode}  /> */}
+       <button onClick={getBattingData}>Batting</button>
+       <button onClick={getBowlingData}>Bowling</button>  
+    {/* <GetBatBowlData  stats={stats} setStats={setMode} playerInfo={playerInfo} mode={mode}  setMode={setMode}  /> */}
      
       <Selectbar  find = {find} setFind={setFind}  />
      {/* { console.log(stats) } */}
-      <Graph  stats={stats} setStats={setStats} optionVal={optionVal} setOptionVal={setOptionVal} find = {find}  />
+      <Graph  stats={stats} setStats={setStats}  find = {find}  />
       {/* <ReactEcharts option={optionVal} style={{ width: '400px', height: '400px' }} /> */}
  
     </>

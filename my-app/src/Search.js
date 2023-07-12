@@ -36,15 +36,32 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName}) {
 
   return (
     <>
-    Search:{' '}
-      <input
-        type="text"
-        placeholder="enter Player name"
-        onChange={(e) => setPlayerName(e.target.value)}
-      />
-      <button type="submit" onClick={handleSearch}>
-        Search
-      </button>
+    
+
+    <div  style={ {
+      marginBottom:'50px',
+      marginTop:'30px'
+    } }> 
+  {/* <h1 class="text-3xl font-bold mb-4">Search:</h1> */}
+<input
+  type="text"
+  placeholder="Enter Player name"
+  class="border border-gray-300 rounded-md px-4 py-2 w-3/4 w-full ml-5 mb-4 "
+  onChange={(e) => setPlayerName(e.target.value)}
+/>
+
+<button
+  type="submit"
+  class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 ml-1 border border-blue-500 hover:border-transparent rounded"
+  onClick={handleSearch}
+>
+  Search
+</button>
+
+
+
+      </div>
+
 
     </>
   )
