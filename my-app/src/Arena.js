@@ -95,8 +95,8 @@ export default function SearchBar() {
       {/* <h1>{playerInfo.id}</h1> */}
       {/* <h1>{playerInfo.teamName}</h1> */}
 
-       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={getBattingData}>Batting</button>
-       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={getBowlingData}>Bowling</button>  
+       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-2" onClick={getBattingData}>Batting</button>
+       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-2 " onClick={getBowlingData}>Bowling</button>  
     {/* <GetBatBowlData  stats={stats} setStats={setMode} playerInfo={playerInfo} mode={mode}  setMode={setMode}  /> */}
      
       <Selectbar  find = {find} setFind={setFind}  />
