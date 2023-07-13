@@ -6,7 +6,7 @@ const TableData = ({playerInfo})=>{
 return (
   <>
   
-  <table class="table-fixed w-full border border-collapse">
+  <table class="">
   <thead>
     <tr>
       <th class="w-1/2 py-2 px-4 border border-gray-300">Player Question</th>
@@ -97,33 +97,21 @@ export default function Playerprofile({playerId}) {
   return (
 <>
 
-<div
-  class="block rounded-lg  bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+<div class="block rounded-lg ml-5 bg-white shadow-[0 2px 15px -3px rgba(0,0,0,0.07), 0 10px 20px -2px rgba(0,0,0,0.04)] dark:bg-neutral-700">
   <a href="#!">
-    <img
-      class=" w-200 h-200 "
-      src= {playerInfo.image}
-      alt="" />
+    <img class="w-full h-auto rounded-t-lg" src={playerInfo.image} alt="" />
   </a>
   <div class="p-6">
-    <h5
-      class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-      Player Data 
-    </h5>
 
-
-    <TableData playerInfo={playerInfo}/> 
-
-
-    <button
-      type="button"
-      class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-      data-te-ripple-init
-      data-te-ripple-color="light"  onClick={LoadPlayerInfo} >
+    
+    <TableData class="mt-4 flex item-center" playerInfo={playerInfo} />
+    
+    <button type="button" class="mt-4 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0 4px 9px -4px #3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0 8px 9px -4px rgba(59,113,202,0.3), 0 4px 18px 0 rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0 8px 9px -4px rgba(59,113,202,0.3), 0 4px 18px 0 rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0 8px 9px -4px rgba(59,113,202,0.3), 0 4px 18px 0 rgba(59,113,202,0.2)] dark:shadow-[0 4px 9px -4px rgba(59,113,202,0.5)] dark:hover:shadow-[0 8px 9px -4px rgba(59,113,202,0.2), 0 4px 18px 0 rgba(59,113,202,0.1)] dark:focus:shadow-[0 8px 9px -4px rgba(59,113,202,0.2), 0 4px 18px 0 rgba(59,113,202,0.1)] dark:active:shadow-[0 8px 9px -4px rgba(59,113,202,0.2), 0 4px 18px 0 rgba(59,113,202,0.1)]" data-te-ripple-init data-te-ripple-color="light" onClick={LoadPlayerInfo}>
       Button
     </button>
   </div>
 </div>
+
 
 
 
