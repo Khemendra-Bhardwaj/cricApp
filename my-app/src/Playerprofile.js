@@ -1,7 +1,7 @@
-import React,{useEffect,useState} from 'react'
+import React,{useState} from 'react'
 
 
-const TableData = ()=>{
+const TableData = ({playerInfo})=>{
 
 return (
   <>
@@ -16,23 +16,23 @@ return (
   <tbody>
     <tr>
       <td class="w-1/2 py-2 px-4 border border-gray-300">Country</td>
-      <td class="w-1/2 py-2 px-4 border border-gray-300">xyz</td>
+      <td class="w-1/2 py-2 px-4 border border-gray-300"> {playerInfo.intlTeam}  </td>
     </tr>
     <tr>
-      <td class="w-1/2 py-2 px-4 border border-gray-300">Age</td>
-      <td class="w-1/2 py-2 px-4 border border-gray-300">xyz</td>
+      <td class="w-1/2 py-2 px-4 border border-gray-300">DoB</td>
+      <td class="w-1/2 py-2 px-4 border border-gray-300"> {playerInfo.DoBFormat}  </td>
     </tr>
     <tr>
       <td class="w-1/2 py-2 px-4 border border-gray-300">Height</td>
-      <td class="w-1/2 py-2 px-4 border border-gray-300">xyz</td>
+      <td class="w-1/2 py-2 px-4 border border-gray-300"> {playerInfo.height } </td>
     </tr>
     <tr>
       <td class="w-1/2 py-2 px-4 border border-gray-300">Bat Arm</td>
-      <td class="w-1/2 py-2 px-4 border border-gray-300">xyz</td>
+      <td class="w-1/2 py-2 px-4 border border-gray-300">  {playerInfo.bat } </td>
     </tr>
     <tr>
       <td class="w-1/2 py-2 px-4 border border-gray-300">Bowl Arm</td>
-      <td class="w-1/2 py-2 px-4 border border-gray-300">xyz</td>
+      <td class="w-1/2 py-2 px-4 border border-gray-300"> {playerInfo.bowl }  </td>
     </tr>
   </tbody>
 </table>
@@ -47,12 +47,15 @@ return (
 
 
 export default function Playerprofile({playerId}) {
-  const img_src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPuvD9dyBEWQb4zgRaa9Jf3-xUSNWZJzGk2K2D6zgHjA&s'
+  // const img_src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPuvD9dyBEWQb4zgRaa9Jf3-xUSNWZJzGk2K2D6zgHjA&s'
   const [playerInfo, setPlayerInfo] = useState({
     id:100,
     height:100,
     bat : 'right',
-    bowl :'right'
+    bowl :'right',
+    intlTeam:'xyz',
+    DoBFormat : 'xyz',
+    image : 'https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg' 
 
   })
 
@@ -75,7 +78,10 @@ export default function Playerprofile({playerId}) {
         id:result.id,
         bat: result.bat,
         bowl:result.bowl,
-        height: result.height 
+        height: result.height ,
+        intlTeam:result.intlTeam,
+        DoBFormat : result.DoBFormat,
+        image : result.image 
         
       }
     )
@@ -95,8 +101,8 @@ export default function Playerprofile({playerId}) {
   class="block rounded-lg  bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
   <a href="#!">
     <img
-      class="rounded-t-lg"
-      src="https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg"
+      class=" w-200 h-200 "
+      src= {playerInfo.image}
       alt="" />
   </a>
   <div class="p-6">
@@ -106,16 +112,14 @@ export default function Playerprofile({playerId}) {
     </h5>
 
 
-    <TableData /> 
-
-
+    <TableData playerInfo={playerInfo}/> 
 
 
     <button
       type="button"
       class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
       data-te-ripple-init
-      data-te-ripple-color="light">
+      data-te-ripple-color="light"  onClick={LoadPlayerInfo} >
       Button
     </button>
   </div>
