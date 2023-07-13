@@ -64,10 +64,10 @@ export default function Graph({find,stats,setStats  }) {
   return (
     <>
 
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-5" onClick={displayGraph}>Show Graph </button>
+
      <ReactEcharts option={optionVal} style={{ width: '400px', height: '400px' }} />
- 
-    <p> hehe  </p>
+     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-5" onClick={displayGraph}>Show Graph </button>
+
     </>
   )
 }

@@ -46,7 +46,7 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName}) {
 <input
   type="text"
   placeholder="Enter Player name"
-  class="border border-gray-300 rounded-md px-4 py-2 w-3/4 w-full ml-5 mb-4 "
+  class="border border-gray-300 rounded-md px-4 py-2 w-3/4 w-4/5 ml-5 mb-4 "
   onChange={(e) => setPlayerName(e.target.value)}
 />
 

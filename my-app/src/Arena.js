@@ -91,19 +91,33 @@ export default function SearchBar() {
   return (
     <>
     
-      <SearchBox playerName={playerName} setPlayerInfo={setPlayerInfo} setPlayerName={setPlayerName} />
-      <Playerprofile  playerId = {playerInfo.id} /> 
-      <h1>{playerInfo.Name}</h1>
+  <SearchBox playerName={playerName} setPlayerInfo={setPlayerInfo} setPlayerName={setPlayerName} />
+  <div class='flex flex-col md:flex-row h-screen  '> 
+
+  <div class='flex w-full md:w-1/3 bg-pink-500' style={ { backgroundColor:'pink'} }>
+  <Playerprofile  playerId = {playerInfo.id} /> 
+  </div>
+
+    <div class='flex-1 flex flex-col items-center' style={ {backgroundColor:'green'}} > 
+  <h1>{playerInfo.Name}</h1>
       {/* <h1>{playerInfo.id}</h1> */}
       {/* <h1>{playerInfo.teamName}</h1> */}
 
        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-2" onClick={getBattingData}>Batting</button>
        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-2 " onClick={getBowlingData}>Bowling</button>  
     {/* <GetBatBowlData  stats={stats} setStats={setMode} playerInfo={playerInfo} mode={mode}  setMode={setMode}  /> */}
-     
+
       <Selectbar  find = {find} setFind={setFind}  />
-     {/* { console.log(stats) } */}
+   
       <Graph  stats={stats} setStats={setStats}  find = {find}  />
+
+      </div>
+ 
+
+      
+      </div>
+
+
       {/* <ReactEcharts option={optionVal} style={{ width: '400px', height: '400px' }} /> */}
  
     </>
