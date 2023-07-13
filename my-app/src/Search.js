@@ -42,7 +42,7 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName}) {
       marginBottom:'50px',
       marginTop:'30px'
     } }> 
-  {/* <h1 class="text-3xl font-bold mb-4">Search:</h1> */}
+
 <input
   type="text"
   placeholder="Enter Player name"
