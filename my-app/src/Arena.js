@@ -28,11 +28,22 @@ export default function SearchBar() {
   //     { type: 'bar' },
   //   ],
   // };
+  const [playerProfileData, setPlayerProfileData] = useState( {
+    id:100,
+    height:100,
+    bat : 'right',
+    bowl :'right',
+    intlTeam:'xyz',
+    DoBFormat : 'xyz',
+    image : 'https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg' 
+
+  })
 
   const [playerName, setPlayerName] = useState('Joe root');
   const [stats, setStats] = useState([[]]);
   const [mode, setMode] = useState('batting');
   const [find, setFind] = useState('Matches');
+  
   // const [findBowl, setFindBowl] = useState('Matches')
   // const [optionVal, setOptionVal] = useState(optionV);
   const [playerInfo, setPlayerInfo] = useState({
@@ -91,11 +102,14 @@ export default function SearchBar() {
   return (
     <>
     
-  <SearchBox playerName={playerName} setPlayerInfo={setPlayerInfo} setPlayerName={setPlayerName} />
+  <SearchBox playerName={playerName} setPlayerInfo={setPlayerInfo} setPlayerName={setPlayerName}   playerInfo= {playerInfo} setPlayerProfileData= {setPlayerProfileData}  />
   <div class='flex flex-col md:flex-row h-screen  '> 
+    
 
-  <div class='flex w-full md:w-1/3 bg-pink-500 pl-5 pr-5  ' style={ { backgroundColor:'pink'} }>
-  <Playerprofile  playerId = {playerInfo.id} /> 
+  <div class='flex w-full md:w-1/3 bg-500 pl-2 pr-4 ' style={ { } }>
+
+    
+  <Playerprofile  playerId = {playerInfo.id}  playerProfileData= {playerProfileData} /> 
   </div>
 
     <div class='flex-1 flex flex-col items-center  ' style={ {}} > 
