@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react'
 
 export default function SearchBox({playerName, setPlayerInfo, setPlayerName, playerInfo , setPlayerProfileData }) {
 
-  const [log_id, setLog_id] = useState(8733)  // initially Loading for KL rahul 
-
+  const [log_id, setLog_id] = useState()  // initially Loading for KL rahul 
+  
   const [playerInfoD, setPlayerInfoD] = useState({
     id:100,
     height:100,
@@ -14,6 +14,7 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName, pla
     image : 'https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg' 
 
   })
+
 
     const loadGetInfoApi = async(id)=>{
 
@@ -30,6 +31,7 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName, pla
         const response = await fetch(url, options);
         const result = await response.json();
         console.log(result);
+        console.log('above result ');
         setPlayerInfoD(
           {
             id:result.id,
@@ -65,9 +67,7 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName, pla
           const result = await response.json();
           console.log(result);
           await getThatPlayer(result);
-          
-
-    
+          // setLog_id(8733)
         } catch (error) {
           console.error(error);
         }
@@ -90,8 +90,10 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName, pla
           loadGetInfoApi(log_id)  
           console.log("loaded everything ... ");
           console.log('=>  ',  log_id  );
-          setPlayerProfileData(setPlayerInfoD);  
-        },[log_id]
+          
+          setPlayerProfileData(playerInfoD);  
+          
+        },[log_id ]
       )
 
 

@@ -108,8 +108,9 @@ export default function SearchBar() {
 
   <div class='flex w-full md:w-1/3 bg-500 pl-2 pr-4 ' style={ { } }>
 
-    
+    { playerProfileData && 
   <Playerprofile  playerId = {playerInfo.id}  playerProfileData= {playerProfileData} /> 
+    }
   </div>
 
     <div class='flex-1 flex flex-col items-center  ' style={ {}} > 
