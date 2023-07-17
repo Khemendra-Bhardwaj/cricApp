@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 
 export default function SearchBox({playerName, setPlayerInfo, setPlayerName, playerInfo , setPlayerProfileData }) {
 
-  const [log_id, setLog_id] = useState()  // initially Loading for KL rahul 
+  const [log_id, setLog_id] = useState(8733)  // initially Loading for KL rahul 
   
   const [playerInfoD, setPlayerInfoD] = useState({
     id:100,
@@ -81,7 +81,7 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName, pla
           Faceid: result.player[0].faceImageId,
           Country: result.player[0].teamName,
         });
-        setLog_id(result.player[0].id)
+        setLog_id(result.player[0].id)     // may be -> log_id here is updated lately 
       };
 
 

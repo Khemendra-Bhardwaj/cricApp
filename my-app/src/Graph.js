@@ -65,8 +65,8 @@ export default function Graph({find,stats,setStats  }) {
     <>
 
 
-     <ReactEcharts option={optionVal} style={{ width: '400px', height: '400px' }} />
-     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-5" onClick={displayGraph}>Show Graph </button>
+     <ReactEcharts option={optionVal} style={{ width: '600px', height: '500px' }} class='w-auto' />
+     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-2" onClick={displayGraph}>Show Graph </button>
 
     </>
   )

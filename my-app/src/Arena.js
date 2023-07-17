@@ -38,6 +38,9 @@ export default function SearchBar() {
     image : 'https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg' 
 
   })
+  
+  // const [, ] = useState(second)
+  const [showSelect, setShowSelect] = useState([0,0])
 
   const [playerName, setPlayerName] = useState('Joe root');
   const [stats, setStats] = useState([[]]);
@@ -93,9 +96,9 @@ export default function SearchBar() {
     }
   };
 
-  const getBattingData = ()=>{ setMode('batting');   getData()  }
+  const getBattingData = ()=>{ setMode('batting');  setShowSelect([1, 0 ]) ;   getData()   }
 
-  const getBowlingData = () => { setMode('bowling');  getData(); };
+  const getBowlingData = () => { setMode('bowling');  setShowSelect([ 0 , 1 ]) ;  getData(); };
 
   
 
@@ -113,21 +116,18 @@ export default function SearchBar() {
     }
   </div>
 
-    <div class='flex-1 flex flex-col items-center  ' style={ {}} > 
+    <div class='flex-1 flex flex-col items-center mt-6 ' style={ {}} > 
   <h1>{playerInfo.Name}</h1>
 
 
        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-2" onClick={getBattingData}>Batting</button>
        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-2 " onClick={getBowlingData}>Bowling</button>  
+  
+      <Selectbar  find = {find} setFind={setFind}  showSelect= {showSelect}  />
    
-      <Selectbar  find = {find} setFind={setFind}  />
-   
-      <Graph  stats={stats} setStats={setStats}  find = {find}  />
+      <Graph  stats={stats} setStats={setStats}  find = {find}   />
 
       </div>
- 
-
-      
       </div>
 
 

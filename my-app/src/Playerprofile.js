@@ -41,10 +41,10 @@ export default function Playerprofile({ playerId, playerProfileData }) {
   return (
     <>
       {playerProfileData && (
-        <div className="block rounded-lg ml-5 bg-white shadow-[0 2px 15px -3px rgba(0,0,0,0.07), 0 10px 20px -2px rgba(0,0,0,0.04)] dark:bg-neutral-700">
+        <div className="block rounded-sm ml-auto mr-auto bg-white shadow-[0 2px 15px -3px rgba(0,0,0,0.07), 0 10px 20px -2px rgba(0,0,0,0.04)] dark:bg-neutral-700">
           {playerProfileData.image && (
-            <img className="w-full h-auto rounded-t-lg" src={playerProfileData.image} alt="" />
-          )}
+            <img className="mx-auto w-full h-auto rounded-full max-w-xs" src={playerProfileData.image} alt="" />
+            )}
           <div className="p-6">
             <TableData playerInfo={playerProfileData} />
           </div>

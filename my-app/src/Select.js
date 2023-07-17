@@ -1,10 +1,14 @@
 import React from "react";
 
-export default function Selectbar({ find, setFind }) {
+export default function Selectbar({ find, setFind, showSelect  }) {
   // const [find, setFind] = useState('Matches');
   return (
     <>
-      <div class="flex items-center gap-2 ">
+      
+        
+        <div class="flex items-center gap-2 ">
+          {
+            showSelect[0] && 
         <select
           name="field"
           value={find}
@@ -21,6 +25,8 @@ export default function Selectbar({ find, setFind }) {
           <option value="Sixes">Sixes</option>
         </select>
 
+        }
+    {    showSelect[1] && 
         <select
           name="field"
           value={find}
@@ -37,6 +43,7 @@ export default function Selectbar({ find, setFind }) {
           <option value="SR">SR</option>
           <option value="10w">10w</option>
         </select>
+}
       </div>
     </>
   );
