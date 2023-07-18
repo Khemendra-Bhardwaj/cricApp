@@ -29,7 +29,7 @@ export default function SearchBar() {
   //   ],
   // };
   const [playerProfileData, setPlayerProfileData] = useState( {
-    id:100,
+    id:-1,
     height:100,
     bat : 'right',
     bowl :'right',
@@ -109,25 +109,36 @@ export default function SearchBar() {
   <div class='flex flex-col md:flex-row h-screen  '> 
     
 
-  <div class='flex w-full md:w-1/3 bg-500 pl-2 pr-4 ' style={ { } }>
-
-    { playerProfileData && 
-  <Playerprofile  playerId = {playerInfo.id}  playerProfileData= {playerProfileData} /> 
-    }
-  </div>
+<div class="flex w-full md:w-1/4 bg-500 pl-2 pr-4">
+  {playerProfileData && (
+    <Playerprofile playerId={playerInfo.id} playerProfileData={playerProfileData} />
+  )}
+</div>
 
     <div class='flex-1 flex flex-col items-center mt-6 ' style={ {}} > 
   <h1>{playerInfo.Name}</h1>
 
 
-       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-2" onClick={getBattingData}>Batting</button>
-       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-2 " onClick={getBowlingData}>Bowling</button>  
-  
+  <div className="flex ">
+    <div class='w-1/2'>  
+  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-2 mr-5 text-lg" onClick={getBattingData}>
+    Batting
+  </button>
+  </div>
+  <div  class='w-1/2' >
+  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-2 text-lg" onClick={getBowlingData}>
+    Bowling
+  </button>
+  </div>
+</div>
+      <div class='mt-3  w-1/6'> 
       <Selectbar  find = {find} setFind={setFind}  showSelect= {showSelect}  />
-   
-      <Graph  stats={stats} setStats={setStats}  find = {find}   />
-
       </div>
+    <div class='mt-10'> 
+      <Graph  stats={stats} setStats={setStats}  find = {find}  />
+      </div>
+      </div>
+
       </div>
 
 

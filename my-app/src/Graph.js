@@ -2,6 +2,16 @@ import React,{useState} from 'react'
 import ReactEcharts from 'echarts-for-react';
 export default function Graph({find,stats,setStats  }) {
 
+  const [graphType, setGraphType] = useState('bar')
+
+  const changeGraph = ()=>{
+    if(graphType==='bar'){
+    setGraphType('pie')
+    }
+    else setGraphType('bar')
+    // displayGraph()
+  }
+
   const optionV = {
     legend: {},
     tooltip: {},
@@ -22,7 +32,37 @@ export default function Graph({find,stats,setStats  }) {
   };
 
 
+  const optionVvPie = {
+    series: [
+      {
+        type: 'pie',
+        data: [
+          {
+            value: 0,
+            name: 'Test'
+          },
+          {
+            value: 0,
+            name: 'Odi'
+          },
+          {
+            value: 0,
+            name: 'T20'
+          },
+          {
+            value: 0,
+            name :'Ipl'
+          }
+        ],
+        radius: '50%'
+      }
+    ]
+  };
+
+
   const [optionVal, setOptionVal] = useState(optionV);
+  const [optionValPie, setOptionValPie] = useState(optionVvPie)
+  
     const displayGraph = () => {
         console.log('finding ' +  find  );
     
@@ -54,8 +94,40 @@ export default function Graph({find,stats,setStats  }) {
                 { type: 'bar' },
               ],
             };
-    
+
+           const optionVvPie = {
+              series: [
+                {
+                  type: 'pie',
+                  data: [
+                    {
+                      value: `${newData[0]}`,
+                      name: 'Test'
+                    },
+                    {
+                      value: `${newData[1]}`,
+                      name: 'Odi'
+                    },
+                    {
+                      value: `${newData[2]}`,
+                      name: 'T20'
+                    },
+                    {
+                      value: `${newData[3]}`,
+                      name :'Ipl'
+                    }
+                  ],
+                  radius: '50%'
+                }
+              ]
+            };
+
+            if(graphType === 'bar'){
             setOptionVal(optionVv);
+            }
+            if(graphType === 'pie'){
+              setOptionValPie(optionValPie)
+            }
             break;
           }
         }  
@@ -64,9 +136,27 @@ export default function Graph({find,stats,setStats  }) {
   return (
     <>
 
+    { graphType === 'bar'  &&
+     <ReactEcharts option={optionVal} style={{ width: '450px', height: '450px' }}  />
+    
+     }
 
-     <ReactEcharts option={optionVal} style={{ width: '600px', height: '500px' }} class='w-auto' />
+    { graphType === 'pie' &&   
+     <ReactEcharts option={optionVal} style={{ width: '450px', height: '450px' }}  />
+
+     }
+
+     <div class='flex justify-center'> 
+
+     <div class='w-1/2 flex justify-center ml-auto mr-auto '> 
      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-2" onClick={displayGraph}>Show Graph </button>
+     </div>
+
+     {/* <div class='w-1/2 flex justify-center ml-auto mr-auto ' > 
+      <button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-2' onClick={changeGraph}> Toggle Graph </button>
+     </div> */}
+
+     </div>
 
     </>
   )

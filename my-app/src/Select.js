@@ -8,7 +8,7 @@ export default function Selectbar({ find, setFind, showSelect  }) {
         
         <div class="flex items-center gap-2 ">
           {
-            showSelect[0] && 
+            (showSelect[0] === 1) && 
         <select
           name="field"
           value={find}
@@ -26,7 +26,7 @@ export default function Selectbar({ find, setFind, showSelect  }) {
         </select>
 
         }
-    {    showSelect[1] && 
+    {   ( showSelect[1]  === 1 )&& 
         <select
           name="field"
           value={find}

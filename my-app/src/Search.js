@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react'
 
 export default function SearchBox({playerName, setPlayerInfo, setPlayerName, playerInfo , setPlayerProfileData }) {
 
-  const [log_id, setLog_id] = useState(8733)  // initially Loading for KL rahul 
+  const [log_id, setLog_id] = useState(-1)  // initially Loading for KL rahul 
   
   const [playerInfoD, setPlayerInfoD] = useState({
-    id:100,
+    id:-1,
     height:100,
     bat : 'right',
     bowl :'right',
@@ -18,7 +18,7 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName, pla
 
     const loadGetInfoApi = async(id)=>{
 
-      const url = `https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/${id}`;
+      const url = `https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/${id}`;   /// 2nd APi 
       const options = {
         method: 'GET',
         headers: {
@@ -31,11 +31,11 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName, pla
         const response = await fetch(url, options);
         const result = await response.json();
         console.log(result);
-        console.log('above result ');
+        console.log('above result '); 
         setPlayerInfoD(
           {
             id:result.id,
-            bat: result.bat,
+            bat: result.bat, 
             bowl:result.bowl,
             height: result.height ,
             intlTeam:result.intlTeam,
@@ -44,6 +44,8 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName, pla
             
           }
         )
+        setPlayerProfileData(playerInfoD)
+
         // console.log(playerInfo);
       } catch (error) {
         console.error(error);
@@ -52,8 +54,10 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName, pla
 
 
 
+    //  Arena
+
     const handleSearch = async () => {
-        const url = `https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/search?plrN=${playerName}`;
+        const url = `https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/search?plrN=${playerName}`;  /// 1st Call 
         const options = {
           method: 'GET',
           headers: {
@@ -66,7 +70,9 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName, pla
           const response = await fetch(url, options);
           const result = await response.json();
           console.log(result);
+          setLog_id(result.player[0].id)   // 1000 
           await getThatPlayer(result);
+
           // setLog_id(8733)
         } catch (error) {
           console.error(error);
@@ -81,17 +87,21 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName, pla
           Faceid: result.player[0].faceImageId,
           Country: result.player[0].teamName,
         });
-        setLog_id(result.player[0].id)     // may be -> log_id here is updated lately 
+          // may be -> log_id here is updated lately 
       };
 
 
       useEffect(
         ()=>{
-          loadGetInfoApi(log_id)  
+          
           console.log("loaded everything ... ");
           console.log('=>  ',  log_id  );
+
+            loadGetInfoApi(log_id)    //1000
           
-          setPlayerProfileData(playerInfoD);  
+          
+          
+          // setPlayerProfileData(playerInfoD);  
           
         },[log_id ]
       )
