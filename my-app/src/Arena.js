@@ -39,7 +39,7 @@ export default function SearchBar() {
     bowl :'right',
     intlTeam:'xyz',
     DoBFormat : 'xyz',
-    image : 'https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg' 
+    image : '' 
   })
   
   // const [, ] = useState(second)
