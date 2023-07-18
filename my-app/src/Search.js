@@ -1,56 +1,57 @@
 import React, {useEffect, useState} from 'react'
 
-export default function SearchBox({playerName, setPlayerInfo, setPlayerName, playerInfo , setPlayerProfileData }) {
+export default function SearchBox({playerName, setPlayerInfo, setPlayerName, playerInfo , setPlayerProfileData , setLog_id, log_id}) {
 
-  const [log_id, setLog_id] = useState(-1)  // initially Loading for KL rahul 
+    // initially Loading for KL rahul 
   
-  const [playerInfoD, setPlayerInfoD] = useState({
-    id:-1,
-    height:100,
-    bat : 'right',
-    bowl :'right',
-    intlTeam:'xyz',
-    DoBFormat : 'xyz',
-    image : 'https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg' 
+  // const [playerInfoD, setPlayerInfoD] = useState({
+  //   id:-1,
+  //   height:100,
+  //   bat : 'right',
+  //   bowl :'right',
+  //   intlTeam:'xyz',
+  //   DoBFormat : 'xyz',
+  //   image : 'https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg' 
 
-  })
+  // })
 
 
-    const loadGetInfoApi = async(id)=>{
+    // const loadGetInfoApi = async(id)=>{
 
-      const url = `https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/${id}`;   /// 2nd APi 
-      const options = {
-        method: 'GET',
-        headers: {
-          'X-RapidAPI-Key': '31404b3dd1msh34e2a69d4cf0da2p1884c7jsn0020f6526ba2',
-          'X-RapidAPI-Host': 'cricbuzz-cricket.p.rapidapi.com'
-        }
-      };
+    //   const url = `https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/${id}`;   /// 2nd APi 
+    //   const options = {
+    //     method: 'GET',
+    //     headers: {
+    //       'X-RapidAPI-Key': '31404b3dd1msh34e2a69d4cf0da2p1884c7jsn0020f6526ba2',
+    //       'X-RapidAPI-Host': 'cricbuzz-cricket.p.rapidapi.com'
+    //     }
+    //   };
       
-      try {
-        const response = await fetch(url, options);
-        const result = await response.json();
-        console.log(result);
-        console.log('above result '); 
-        setPlayerInfoD(
-          {
-            id:result.id,
-            bat: result.bat, 
-            bowl:result.bowl,
-            height: result.height ,
-            intlTeam:result.intlTeam,
-            DoBFormat : result.DoBFormat,
-            image : result.image 
+    //   try {
+    //     const response = await fetch(url, options);
+    //     const result = await response.json();
+    //     console.log(result);
+    //     console.log('above result '); 
+    //     // setLog_id(result.)
+    //     // setPlayerInfoD(
+    //     //   {
+    //     //     id:result.id,
+    //     //     bat: result.bat, 
+    //     //     bowl:result.bowl,
+    //     //     height: result.height ,
+    //     //     intlTeam:result.intlTeam,
+    //     //     DoBFormat : result.DoBFormat,
+    //     //     image : result.image 
             
-          }
-        )
-        setPlayerProfileData(playerInfoD)
+    //     //   }
+    //     // )
+    //     // setPlayerProfileData(playerInfoD)
 
-        // console.log(playerInfo);
-      } catch (error) {
-        console.error(error);
-      }
-    }
+    //     // console.log(playerInfo);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // }
 
 
 
@@ -91,20 +92,16 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName, pla
       };
 
 
-      useEffect(
-        ()=>{
+      // useEffect(
+      //   ()=>{
           
-          console.log("loaded everything ... ");
-          console.log('=>  ',  log_id  );
-
-            loadGetInfoApi(log_id)    //1000
+      //     console.log("loaded everything ... ");
+      //     console.log('=>  ',  log_id  );
+      //       loadGetInfoApi(log_id)    //1000
+      //     // setPlayerProfileData(playerInfoD);  
           
-          
-          
-          // setPlayerProfileData(playerInfoD);  
-          
-        },[log_id ]
-      )
+      //   },[log_id ]
+      // )
 
 
 

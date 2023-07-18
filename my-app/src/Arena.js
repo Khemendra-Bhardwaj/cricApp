@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 // import ReactEcharts from 'echarts-for-react';
 import Selectbar from './Select';
 import Graph from './Graph';
@@ -9,6 +9,10 @@ import Playerprofile  from './Playerprofile';
 
 
 export default function SearchBar() {
+
+ 
+  
+  
 
   // const optionV = {
   //   legend: {},
@@ -36,7 +40,6 @@ export default function SearchBar() {
     intlTeam:'xyz',
     DoBFormat : 'xyz',
     image : 'https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg' 
-
   })
   
   // const [, ] = useState(second)
@@ -46,7 +49,7 @@ export default function SearchBar() {
   const [stats, setStats] = useState([[]]);
   const [mode, setMode] = useState('batting');
   const [find, setFind] = useState('Matches');
-  
+  const [log_id, setLog_id] = useState(-1) 
   // const [findBowl, setFindBowl] = useState('Matches')
   // const [optionVal, setOptionVal] = useState(optionV);
   const [playerInfo, setPlayerInfo] = useState({
@@ -73,6 +76,45 @@ export default function SearchBar() {
     setStats(stat);
     console.log(stat);
   };
+
+
+
+  const loadGetInfoApi = async(id)=>{
+    const url = `https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/${id}`;   /// 2nd APi 
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '31404b3dd1msh34e2a69d4cf0da2p1884c7jsn0020f6526ba2',
+        'X-RapidAPI-Host': 'cricbuzz-cricket.p.rapidapi.com'
+      }
+    };
+    try {
+      const response = await fetch(url, options);
+      const result = await response.json();
+      console.log(result);
+      console.log('above result '); 
+      setPlayerProfileData({
+        id:result.id,
+        bat: result.bat, 
+        bowl:result.bowl,
+        height: result.height ,
+        intlTeam:result.intlTeam,
+        DoBFormat : result.DoBFormat,
+        image : result.image 
+      })
+      // console.log(playerInfo);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    if(log_id !== -1){
+    loadGetInfoApi(log_id)
+    }
+
+  }, [log_id])
+
 
   const getData = async () => {
     const url = `https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/${playerInfo.id}/${mode}`;
@@ -105,12 +147,12 @@ export default function SearchBar() {
   return (
     <>
     
-  <SearchBox playerName={playerName} setPlayerInfo={setPlayerInfo} setPlayerName={setPlayerName}   playerInfo= {playerInfo} setPlayerProfileData= {setPlayerProfileData}  />
+  <SearchBox playerName={playerName} setPlayerInfo={setPlayerInfo} setPlayerName={setPlayerName}   playerInfo= {playerInfo} setPlayerProfileData= {setPlayerProfileData} log_id={log_id} setLog_id={setLog_id}  />
   <div class='flex flex-col md:flex-row h-screen  '> 
     
 
 <div class="flex w-full md:w-1/4 bg-500 pl-2 pr-4">
-  {playerProfileData && (
+  {playerProfileData &&   log_id !== -1 &&  (
     <Playerprofile playerId={playerInfo.id} playerProfileData={playerProfileData} />
   )}
 </div>
