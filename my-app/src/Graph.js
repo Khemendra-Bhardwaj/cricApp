@@ -137,7 +137,7 @@ export default function Graph({find,stats,setStats  }) {
     <>
 
     { graphType === 'bar'  &&
-     <ReactEcharts option={optionVal} style={{ width: '450px', height: '450px' }}  />
+     <ReactEcharts option={optionVal} style={{ width: '550px', height: '550px' }}  />
     
      }
 

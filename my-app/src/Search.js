@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
-export default function SearchBox({playerName, setPlayerInfo, setPlayerName, playerInfo , setPlayerProfileData , setLog_id, log_id}) {
+export default function SearchBox({playerName, setDisplayNone,  setPlayerInfo, setPlayerName, playerInfo , setPlayerProfileData , setLog_id, log_id}) {
 
     // initially Loading for KL rahul 
   
@@ -58,6 +58,11 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName, pla
     //  Arena
 
     const handleSearch = async () => {
+      if(playerName.length === 0 ){
+        alert('Enter Something ') 
+
+      }
+      else{
         const url = `https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/search?plrN=${playerName}`;  /// 1st Call 
         const options = {
           method: 'GET',
@@ -72,12 +77,13 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName, pla
           const result = await response.json();
           console.log(result);
           setLog_id(result.player[0].id)   // 1000 
-          await getThatPlayer(result);
-
+            await getThatPlayer(result);
+            setDisplayNone(2)  
           // setLog_id(8733)
         } catch (error) {
           console.error(error);
         }
+      }
       };
 
       const getThatPlayer = async (result) => {
@@ -112,22 +118,25 @@ export default function SearchBox({playerName, setPlayerInfo, setPlayerName, pla
     <div  style={ {
       marginBottom:'50px',
       marginTop:'30px'
-    } }> 
+    } } class=' flex item-center container'  > 
+
 
 <input
   type="text"
   placeholder="Enter Player name"
-  class="border border-gray-300 rounded-md px-4 py-2 w-3/4 w-4/5 ml-5 mb-4 "
+  class="border border-gray-300 rounded-md px-6 py-3 w-3/4 w-4/5 ml-5 mb-4 "
   onChange={(e) => setPlayerName(e.target.value)}
 />
 
+<div class='ml-auto mr-auto '>
 <button
   type="submit"
-  class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 ml-1 border border-blue-500 hover:border-transparent rounded"
+  class="bg-transparent hover:bg-blue-500 text-blue-900 font-semibold hover:text-white py-2 px-4 ml-1 border border-blue-500 hover:border-transparent rounded-lg w-60 h-12"
   onClick={handleSearch}
 >
   Search
 </button>
+</div>
 
 
 

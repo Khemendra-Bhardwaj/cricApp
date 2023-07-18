@@ -10,9 +10,6 @@ import Playerprofile  from './Playerprofile';
 
 export default function SearchBar() {
 
- 
-  
-  
 
   // const optionV = {
   //   legend: {},
@@ -45,11 +42,12 @@ export default function SearchBar() {
   // const [, ] = useState(second)
   const [showSelect, setShowSelect] = useState([0,0])
 
-  const [playerName, setPlayerName] = useState('Joe root');
+  const [playerName, setPlayerName] = useState('');
   const [stats, setStats] = useState([[]]);
   const [mode, setMode] = useState('batting');
   const [find, setFind] = useState('Matches');
   const [log_id, setLog_id] = useState(-1) 
+  const [displayNone, setDisplayNone] = useState(0) 
   // const [findBowl, setFindBowl] = useState('Matches')
   // const [optionVal, setOptionVal] = useState(optionV);
   const [playerInfo, setPlayerInfo] = useState({
@@ -77,6 +75,13 @@ export default function SearchBar() {
     console.log(stat);
   };
 
+useEffect(() => {
+  if(playerName.length === 0){
+    setDisplayNone(true)
+  }
+  else setDisplayNone(false) 
+  
+}, [playerName])
 
 
   const loadGetInfoApi = async(id)=>{
@@ -146,23 +151,25 @@ export default function SearchBar() {
 
   return (
     <>
-    
-  <SearchBox playerName={playerName} setPlayerInfo={setPlayerInfo} setPlayerName={setPlayerName}   playerInfo= {playerInfo} setPlayerProfileData= {setPlayerProfileData} log_id={log_id} setLog_id={setLog_id}  />
+
+  <div class='ml-auto mr-auto '>   
+  <SearchBox playerName={playerName} setDisplayNone={setDisplayNone} setPlayerInfo={setPlayerInfo} setPlayerName={setPlayerName}   playerInfo= {playerInfo} setPlayerProfileData= {setPlayerProfileData} log_id={log_id} setLog_id={setLog_id}  />
+  </div>
+
   <div class='flex flex-col md:flex-row h-screen  '> 
     
-
 <div class="flex w-full md:w-1/4 bg-500 pl-2 pr-4">
   {playerProfileData &&   log_id !== -1 &&  (
     <Playerprofile playerId={playerInfo.id} playerProfileData={playerProfileData} />
   )}
 </div>
-
-    <div class='flex-1 flex flex-col items-center mt-6 ' style={ {}} > 
+{/* { (displayNone === 2 ) &&  */}
+    <div class='flex-1 flex flex-col items-center mt-6  ' style={ {}} > 
   <h1>{playerInfo.Name}</h1>
+  
 
-
-  <div className="flex ">
-    <div class='w-1/2'>  
+  <div className="flex mt-5 ">
+    <div class='w-1/2 '>  
   <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-2 mr-5 text-lg" onClick={getBattingData}>
     Batting
   </button>
@@ -173,6 +180,7 @@ export default function SearchBar() {
   </button>
   </div>
 </div>
+
       <div class='mt-3  w-1/6'> 
       <Selectbar  find = {find} setFind={setFind}  showSelect= {showSelect}  />
       </div>
@@ -180,7 +188,7 @@ export default function SearchBar() {
       <Graph  stats={stats} setStats={setStats}  find = {find}  />
       </div>
       </div>
-
+{/* } */}
       </div>
 
 
