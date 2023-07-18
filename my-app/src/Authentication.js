@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { app } from './firebase';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import Arena  from './Arena'
+// import Arena  from './Arena'
 
 import {
   getAuth,
@@ -59,8 +59,8 @@ export default function Authentication() {
   if (isLoggedIn) {
     return (
       <Routes>
-        <Route path="/search-player" element={<Arena />} />
-        <Route path="/" element={<Navigate to="/search-player" />} />
+        
+        <Route path="/" element={<Navigate to="/home" />} />
       </Routes>
     );
   }

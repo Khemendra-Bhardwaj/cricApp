@@ -3,7 +3,7 @@ import SearchBar from './Arena';
 import { Route, Routes } from "react-router-dom"
 import Authentication from './Authentication';
 // import ReactEcharts from 'echarts-for-react';
-
+import Home from './Home'
 
 export default function App() {
 
@@ -14,6 +14,7 @@ export default function App() {
 
     <Routes>
       <Route path='/' element={ <Authentication/>} >  </Route>
+      <Route   path='/home' element={  <Home/>  } />
     <Route path='/search-player' element={  <SearchBar /> }>  </Route>
     </Routes>
   
