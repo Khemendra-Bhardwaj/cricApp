@@ -60,7 +60,7 @@ export default function Authentication() {
     return (
       <Routes>
         
-        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="*" element={<Navigate to="/home" />} />
       </Routes>
     );
   }
