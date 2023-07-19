@@ -57,11 +57,11 @@ const Ranking_list = ({Ranking_stats})=>{
 
 export default function Icc() {
     const [rankList, setRankList] = useState([])
-
+    const [type, setType] = useState('test')
 
 
     const load_icc = async()=>{
-    const url = 'https://cricbuzz-cricket.p.rapidapi.com/stats/v1/rankings/batsmen?formatType=test';
+    const url = `https://cricbuzz-cricket.p.rapidapi.com/stats/v1/rankings/batsmen?formatType=${type}`;
     const options = {
         method: 'GET',
         headers: {
@@ -101,19 +101,33 @@ export default function Icc() {
 
     useEffect(() => {
       load_icc()
-    }, [])
+    } ,[])
+
     
 
 
 
   return (
   <>
+  <div class='grid md:grid-cols-5 sm:grid-cols-1 place-items-center mt-10 gap-2 '>
   {
     rankList.map( (x)=>{
        return  <div class='mt-3 w-full'>  <Ranking_list  Ranking_stats ={x}  /> </div>
     } )
   }
+  </div>
+
   
+  <button  class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"   >
+  Test
+</button>
+<button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"  >
+  Odi
+</button>
+<button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" >
+  T20
+</button>
+
     
   </>
   )
