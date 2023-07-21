@@ -89,7 +89,7 @@ const Card = ({Field})=>{
  
   <header class=" text-2xl font-semibold font-bold font-sans p-4 ml-16 " >  {Field.heading}</header>
   <div class="px-5  ">
-    <p class="text-gray-500 px-4 ">
+    <p class="text-gray-500 ml-auto mr-auto  ">
     {Field.subHeading}
     </p>
   </div>
@@ -134,13 +134,13 @@ export default function Home() {
 <div class=' ml-auto mr-auto ' > 
 <Card Field={ {heading : 'Teams ', subHeading : 'Search About current Team , get to know their current playing 11 and reserves ', id: 'teams' , img : Team  }  }/> 
 </div>
-<div class=' ml-auto mr-auto mt-6' > 
-<Card Field={ {heading : 'News ', subHeading : 'Latest Cricketing News and player updates and much more ...  ', id: 'news', img : News }  }/> 
+<div class=' ml-auto mr-auto mt-8' > 
+<Card Field={ {heading : 'News ', subHeading : 'Latest Cricketing News and player updates , cricket boards and much more ...  ', id: 'news', img : News }  }/> 
 </div>
-<div class=' ml-auto mr-auto mt-6' >  
+<div class=' ml-auto mr-auto mt-8' >  
 <Card Field={ {heading : 'ICC Ranking ', subHeading : ' Get the current ICC ranking of players in all 3 formats T20,Test,Odi   ', id: 'icc', img : Icc }  }/> 
 </div>
-<div class=' ml-auto mr-auto mt-6' > 
+<div class=' ml-auto mr-auto mt-8' > 
 <Card Field={ {heading : 'Compare Players ', subHeading : ' Draw a comparision with graphical data among players on various parameters   ', id: 'compare-players' , img : Compare  }  }/> 
 </div> 
 </div> 
