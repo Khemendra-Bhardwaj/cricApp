@@ -13,11 +13,11 @@ const Rank_Player_profile = ({ Ranking_stats }) => {
             />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm text-gray-500 truncate dark:text-gray-400">{Ranking_stats.rating}</p>
-            <p className="text-sm text-gray-500 truncate dark:text-gray-400">{Ranking_stats.lastUpdatedOn}</p>
-            <p className="text-sm text-gray-500 truncate dark:text-gray-400">{Ranking_stats.country}</p>
+            <p className="text-md text-black-500 truncate dark:text-black-400">{Ranking_stats.rating}</p>
+            <p className="text-md text-black-500 truncate dark:text-black-400">{Ranking_stats.lastUpdatedOn}</p>
+            <p className="text-md text-black-500 truncate dark:text-black-400">{Ranking_stats.country}</p>
           </div>
-          <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+          <div className="inline-flex items-center text-base font-semibold text-black-900 dark:text-black">
             {Ranking_stats.rank}
           </div>
         </div>
@@ -29,12 +29,12 @@ const Rank_Player_profile = ({ Ranking_stats }) => {
 const Ranking_list = ({ Ranking_stats }) => {
   return (
     <>
-      <div className="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg ml-auto mr-auto shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <div className="w-full max-w-md p-4 bg-white border border-gray-200 transition duration-500 hover:scale-110 rounded-lg ml-auto mr-auto shadow sm:p-8 dark:bg-white-800 dark:border-gray-700">
         <div className="flex items-center justify-between mb-4">
-          <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">{Ranking_stats.name}</h5>
+          <h5 className="text-xl font-bold leading-none text-black-900 dark:text-black">{Ranking_stats.name}</h5>
         </div>
         <div className="flow-root">
-          <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
+          <ul role="list" className="divide-y divide-black-200 dark:divide-black-700">
             <Rank_Player_profile Ranking_stats={Ranking_stats} />
           </ul>
         </div>
