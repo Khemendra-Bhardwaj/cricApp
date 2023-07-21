@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { NavBar } from './Home';
 
 const Rank_Player_profile = ({ Ranking_stats }) => {
   return (
@@ -86,7 +87,7 @@ const Icc = () => {
         <>
     <div> 
       <button
-        className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+        className="bg-transparent hover:bg-green-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
         onClick={() => {
             setType('test');
             load_icc();
@@ -98,7 +99,7 @@ const Icc = () => {
 
       <div> 
       <button
-        className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+        className="bg-transparent hover:bg-green-500  text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
         onClick={() => {
             setType('odi');
             load_icc();
@@ -109,7 +110,7 @@ const Icc = () => {
       </div> 
       <div> 
       <button
-        className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+        className="bg-transparent hover:bg-green-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
         onClick={() => {
             setType('t20');
             load_icc();
@@ -126,10 +127,14 @@ const Icc = () => {
 
   useEffect(() => {
     load_icc();
-  }, []);
+  }, [type]);
 
   return (
-    <>  <div> 
+    <> 
+
+    <NavBar />
+    
+     <div> 
          <div class='grid grid-cols-3 mt-6 place-items-center '> 
         <Formats /> 
       </div>  

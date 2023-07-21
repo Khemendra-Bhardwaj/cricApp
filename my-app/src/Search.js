@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { NavBar } from './Home';
 
 export default function SearchBox({playerName, setDisplayNone,  setPlayerInfo, setPlayerName, playerInfo , setPlayerProfileData , setLog_id, log_id}) {
 
@@ -114,7 +115,7 @@ export default function SearchBox({playerName, setDisplayNone,  setPlayerInfo, s
   return (
     <>
     
-
+    <NavBar />
     <div  style={ {
       marginBottom:'50px',
       marginTop:'30px'

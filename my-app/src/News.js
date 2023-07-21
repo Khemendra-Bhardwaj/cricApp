@@ -1,14 +1,15 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect ,  Routes, Link } from 'react'
+import {NavBar} from './Home'
 
 const NewsComponent = ({News_data})=>{
     return (
         <>
             
     <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg  ml-auto mr-auto  shadow dark:bg-gray-800 dark:border-gray-700 mt-6">
-        <a href="#">
+       
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"> {News_data.hline}  </h5>
-        </a>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> {News_data.intro}   </p>
+       
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> {News_data.intro.substring(0,100)} ...   </p>
         {
             (News_data.pubTime) && <p> Pulished At : {News_data.pubTime} </p>
         }
@@ -19,11 +20,8 @@ const NewsComponent = ({News_data})=>{
 }
 
 
-
-
-
 export default function News() {
-    const [newsList, setNewsList] = useState([{},{},{}]) 
+    const [newsList, setNewsList] = useState([]) 
 
     const loadNews = async()=>{
         const url = 'https://cricbuzz-cricket.p.rapidapi.com/news/v1/index';
@@ -71,7 +69,13 @@ export default function News() {
 
   return (
    <>
-    <div class='grid md:grid-cols-1 sm:grid-cols-1 place-items-center mt-4 '> 
+   <NavBar />
+   
+   <div class='ml-auto mr-auto mt-5'> 
+    <h1 class='font-sans text-3xl font-semibold  text-center text-black hover:text-green-500 text-3xl transition duration-300'> Recent Stories </h1>
+   </div>
+
+    <div class='grid md:grid-cols-3 sm:grid-cols-1 place-items-center mt-4 '> 
   {  newsList.map( (x)=>{
         return  <div class='mt-3 w-full' > <NewsComponent News_data={x} /> </div> 
     } )}
