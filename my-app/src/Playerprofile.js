@@ -3,7 +3,7 @@ import React from 'react';
 const TableData = ({ playerInfo }) => {
   return (
     <>
-      <table className="m-auto ">
+      <table className="m-auto  ">
         <thead>
           <tr>
             <th className="w-1/2 py-2 px-4 border border-gray-300">Player Question</th>
@@ -41,11 +41,11 @@ export default function Playerprofile({ playerId, playerProfileData }) {
   return (
     <>
       {playerProfileData && (
-        <div className="block rounded-lg ml-5 bg-white shadow-[0 2px 15px -3px rgba(0,0,0,0.07), 0 10px 20px -2px rgba(0,0,0,0.04)] dark:bg-neutral-700">
+        <div className="block rounded-lg ml-5 bg-white ">
           {playerProfileData.image && (
-            <img className="w-full h-auto rounded-t-lg" src={playerProfileData.image} alt="" />
+            <img className="w-full h-auto rounded-t-md" src={playerProfileData.image} alt="" />
           )}
-          <div className="p-6">
+          <div className="p-6 bg-white">
             <TableData playerInfo={playerProfileData} />
           </div>
         </div>

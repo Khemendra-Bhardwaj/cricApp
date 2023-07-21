@@ -165,7 +165,7 @@ useEffect(() => {
 </div>
 {/* { (displayNone === 2 ) &&  */}
     <div class='flex-1 flex flex-col items-center mt-6  ' style={ {}} > 
-  <h1>{playerInfo.Name}</h1>
+  <h1 class='font-sans   text-2xl  font-semibold '>{playerInfo.Name}</h1>
   
 
   <div className="flex mt-5 ">

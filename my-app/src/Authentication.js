@@ -11,7 +11,7 @@ import {
 
 const auth = getAuth(app);
 
-export default function Authentication() {
+export default function Authentication({darkMode, setDarkMode}) {
   const [user, setUser] = useState({ Email: '', Password: '' });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -93,7 +93,7 @@ export default function Authentication() {
       <div className="mt-6 text-center">
       <div className="mt-6 text-center">
       <button className="w-full inline-flex items-center justify-center px-4 py-2 bg-sky-600 border border-transparent rounded-md font-semibold capitalize text-white hover:bg-sky-700 active:bg-sky-700 focus:outline-none focus:border-sky-700 focus:ring focus:ring-sky-200 disabled:opacity-25 transition" onClick={handleGuest} > Guest </button>
-   
+     
       </div>
       </div>
 
