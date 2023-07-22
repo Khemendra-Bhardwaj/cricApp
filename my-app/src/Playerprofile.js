@@ -6,8 +6,8 @@ const TableData = ({ playerInfo }) => {
       <table className="m-auto  ">
         <thead>
           <tr>
-            <th className="w-1/2 py-2 px-4 border border-gray-300">Player Question</th>
-            <th className="w-1/2 py-2 px-4 border border-gray-300">Answer</th>
+            <th className="w-1/2 py-2 px-4 border border-gray-300">Field </th>
+            <th className="w-1/2 py-2 px-4 border border-gray-300"> Data </th>
           </tr>
         </thead>
         <tbody>
@@ -41,9 +41,9 @@ export default function Playerprofile({ playerId, playerProfileData }) {
   return (
     <>
       {playerProfileData && (
-        <div className="block rounded-lg ml-5 bg-white ">
+        <div className="block rounded-lg ml-5 bg-white ml-auto mr-auto  ">
           {playerProfileData.image && (
-            <img className="w-full h-auto rounded-t-md" src={playerProfileData.image} alt="" />
+            <img className="w-full h-auto rounded-full sm" src={playerProfileData.image} alt="" />
           )}
           <div className="p-6 bg-white">
             <TableData playerInfo={playerProfileData} />

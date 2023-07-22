@@ -134,7 +134,7 @@ export default function Home() {
 <Card Field={ {heading : 'Teams ', subHeading : 'Search About current Team , get to know their current playing 11 and reserves ', id: 'teams' , img : Team  }  }/> 
 </div> */}
 <div class=' ml-auto mr-auto mt-8' > 
-<Card Field={ {heading : 'News ', subHeading : 'Stay up-to-date with the latest cricketing news, player updates, cricket board announcements, and much more with our comprehensive platform. Get all the cricketing insights you need in one place!  ', id: 'news', img : News }  }/> 
+<Card Field={ {heading : 'News ', subHeading : 'Stay up-to-date with the latest cricketing news, player updates, cricket board announcements, and much more with our comprehensive platform. Get all the cricketing insights you need !   ', id: 'news', img : News }  }/> 
 </div>
 <div class=' ml-auto mr-auto mt-8' >  
 <Card Field={ {heading : 'ICC Ranking ', subHeading : ' Easily access the current ICC rankings of players in all three formats - T20, Test, and ODI, and stay informed about the top performers across the cricket world.   ', id: 'icc', img : Icc }  }/> 
